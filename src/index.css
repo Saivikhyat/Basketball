@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-court-orange: #e86f2a;
+  --color-court-wood: #c4893b;
+  --color-court-paint: #b85c2a;
+  --color-court-line: #ffffff;
+  --color-dark-bg: #0a0e17;
+  --color-dark-card: #131927;
+  --color-dark-border: #1e2a3a;
+  --color-accent-blue: #3b82f6;
+  --color-accent-green: #22c55e;
+  --color-accent-red: #ef4444;
+  --color-accent-yellow: #eab308;
+}
+
+body {
+  background-color: var(--color-dark-bg);
+  color: #e2e8f0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.gauge-ring {
+  transition: stroke-dashoffset 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(59, 130, 246, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.6); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 1s linear infinite;
+}
+
+.court-slot {
+  transition: all 0.2s ease;
+}
+
+.court-slot:hover {
+  transform: scale(1.05);
+}
+
+.toast-enter {
+  animation: fadeIn 0.3s ease-out forwards;
+}
