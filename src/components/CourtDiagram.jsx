@@ -2,11 +2,11 @@ import { useLineup } from '../context/LineupContext';
 import { POSITIONS, getRatingColor } from '../data/players';
 
 const COURT_POSITIONS = {
-  PG: { x: '50%', y: '12%' },
-  SG: { x: '25%', y: '30%' },
-  SF: { x: '75%', y: '30%' },
-  PF: { x: '35%', y: '60%' },
-  C: { x: '65%', y: '60%' },
+  PG: { x: '50%', y: '13%' },
+  SG: { x: '23%', y: '35%' },
+  SF: { x: '77%', y: '35%' },
+  PF: { x: '37%', y: '60%' },
+  C: { x: '63%', y: '60%' },
 };
 
 function PlayerSlot({ position }) {
@@ -17,10 +17,10 @@ function PlayerSlot({ position }) {
 
   return (
     <div
-      className="absolute -translate-x-1/2 -translate-y-1/2 z-10"
+      className="absolute -translate-x-1/2 -translate-y-1/2 z-10 group"
       style={{ left: slotPos.x, top: slotPos.y }}
     >
-      <button
+      <div
         onClick={() => setSelectedPosition(position)}
         className={`court-slot relative flex flex-col items-center gap-1 rounded-xl border-2 px-3 py-2 text-center transition-all cursor-pointer
           ${player
@@ -43,21 +43,23 @@ function PlayerSlot({ position }) {
               {player.name.split(' ').pop()}
             </span>
             <span className="text-[10px] text-slate-400">{player.team.split(' ').pop()}</span>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                removePlayer(position);
-              }}
-              className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-accent-red text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-red-600 transition-opacity"
-              title="Remove player"
-            >
-              ×
-            </button>
           </>
         ) : (
           <span className="text-xs text-slate-500">+ Select</span>
         )}
-      </button>
+      </div>
+      {player && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            removePlayer(position);
+          }}
+          className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-accent-red text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-red-600 transition-opacity"
+          title="Remove player"
+        >
+          ×
+        </button>
+      )}
     </div>
   );
 }

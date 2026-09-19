@@ -1,8 +1,14 @@
-const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
-const MODEL = 'llama-3.3-70b-versatile';
+const GROQ_API_URL = '/api/openai/v1/chat/completions';
+const MODEL = 'qwen/qwen3.8-27b';
 
 function getApiKey() {
-  return localStorage.getItem('groq_api_key') || '';
+  const stored = localStorage.getItem('groq_api_key');
+  if (stored) return stored;
+  const envKey = import.meta.env.VITE_GROQ_API_KEY || '';
+  if (envKey) {
+    localStorage.setItem('groq_api_key', envKey);
+  }
+  return envKey;
 }
 
 export function setApiKey(key) {

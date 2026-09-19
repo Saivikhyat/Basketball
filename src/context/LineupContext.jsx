@@ -30,15 +30,7 @@ export function LineupProvider({ children }) {
   }, []);
 
   const selectPlayer = useCallback((position, player) => {
-    setLineup((prev) => {
-      const updated = { ...prev };
-      const existingPos = Object.entries(updated).find(([, p]) => p?.id === player.id);
-      if (existingPos) {
-        updated[existingPos[0]] = null;
-      }
-      updated[position] = player;
-      return updated;
-    });
+    setLineup((prev) => ({ ...prev, [position]: player }));
     setEvaluation(null);
   }, []);
 
